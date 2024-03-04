@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMoogle: Spread Connections</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/title-icon.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js" integrity="sha512-zoJXRvW2gC8Z0Xo3lBbao5+AS3g6YWr5ztKqaicua11xHo+AvE1b0lT9ODgrHTmNUxeCw0Ry4BGRYZfXu70weg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+ <header>
+    <nav>
+        <div class="container">
+            <img class="logo" src="/img/amlogo.png" alt="logo">
+            <h2>Talk with Friends</h2>
+            <div class="online-status">00000+ Online users</div>
+        </div>
+    </nav>
+ </header>
+ <main class="video_chat_main_container">
+    <div class="video_chat_container">
+        <div class="video-tag-container">
+            <div class="videos">
+                <video src="" class="video-player" id="user1" autoplay="autoplay" playsininline="playsininline" style="width:400px;">
+                </video>
+                <video src="" class="video-player" id="user2" style="border-top: 2px solid white; width:400px;" autoplay="autoplay" playsininline="playsininline">
+                </video>
+            </div>
+        </div>
+        <div class="chat-container">
+            <div class="chat-text-container">
+                <p>You are now chatting with Random BroORSis</p>
+                <p>You both speaks same lang.-hinglish</p>
+                <hr class="horizontal-divider">
+                <p class="chat-text-area"></p>
+            </div>
+            <div class="next-chat-container">
+                <div class="next-chat">
+                    <div>Next</div>
+                </div>
+                <div class="type-message">
+                    <textarea name="" id="msg-input" cols="30" rows="5"></textarea>
+                </div>
+                <div class="msg-send-button">Send</div>
+            </div>
+        </div>
+    </div>
+ </main>
+</body>
+<script src="/js/index.js"></script>
+</html>
