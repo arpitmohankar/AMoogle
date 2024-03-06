@@ -38,4 +38,34 @@ io.on("connection",(socket)=>{
         console.log("UserCount",userCount);
         
     });
+
+
+    socket.on("offerSentToRemote",(data)=>{
+    var offerReceiver=userConnection.find((o)=>o.user_id===data.remoteUser);
+      
+    if(offerReceiver){
+        console.log("OfferReceiver user :",offerReceiver.connectionID);
+        socket.to(offerReceiver.connectionID).emit("ReceiveOffer",data);
+    }
+    });
+
+
+    socket.on("answerSentToUser1",(data)=>{
+        var answerReceiver=userConnection.find((o)=>o.user_id===data.receiver)
+
+        if(answerReceiver){
+            console.log("answerReceiver user :",answerReceiver.connectionID);
+            socket.to(answerReceiver.connectionID).emit("ReceiveAnswer",data);
+        }
+    });
+    
+    socket.on("candidateSentToUser",(data)=>{
+        var candidateReceiver=userConnection.find((o)=>o.user_id===data.remoteUser)
+
+        if(candidateReceiver){
+            console.log("candidateReceiver user :",candidateReceiver.connectionID);
+            socket.to(candidateReceiver.connectionID).emit("candidateReceiver",data);
+        }
+    });
+    
 });
