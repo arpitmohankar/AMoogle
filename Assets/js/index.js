@@ -3,8 +3,8 @@ let username;
 let remoteUser;
 let url = new URL(window.location.href);
 
-username = url.searchParams.get('username');
-remoteUser = url.searchParams.get('remoteUser');
+username = url.searchParams.get("username");
+remoteUser = url.searchParams.get("remoteUser");
 let peerConnection; 
 let remoteStream;   
 
@@ -13,7 +13,7 @@ let init= async ()=>{
         video:true,
         audio:true
     });
-    document.getElementById("user2").srcObject=localStream;
+    document.getElementById("user-1").srcObject=localStream;
     createOffer()
 };
 init();
@@ -71,7 +71,7 @@ let createPeerConnection=async()=>{
 
 let createOffer=async()=>{
 
-    createPeerConnection()
+    peerConnection=new RTCPeerConnection(servers);
     let offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
     socket.emit("offerSentToRemote",{
@@ -83,7 +83,7 @@ let createOffer=async()=>{
 let createAnswer=async(data)=>{
     remoteUser=data.username
 
-    createPeerConnection()
+    peerConnection=new RTCPeerConnection(servers);
     await peerConnection.setRemoteDescription(data.offer);
     let answer=await peerConnection.createAnswer();
     

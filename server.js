@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const { use } = require("./Server/routes/router");
 // const bodyparser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 const app=express();
@@ -20,7 +21,7 @@ var server=app.listen(PORT,()=>{
 });
 
 const io = require("socket.io")(server, {
-    allowEIO3:true  //for avoiding mismatch issue,false by default
+    allowEIO3:true 
 });
 
 var userConnection = [];
@@ -31,7 +32,7 @@ io.on("connection",(socket)=>{
     socket.on("userconnect",(data)=>{
     console.log("Login UsersName:", data.displayName);
         userConnection.push({
-            connectionID: socket.id,
+            connectionId: socket.id,
             user_id: data.displayName,
         });
         var userCount=userConnection.length;
@@ -44,8 +45,8 @@ io.on("connection",(socket)=>{
     var offerReceiver=userConnection.find((o)=>o.user_id===data.remoteUser);
       
     if(offerReceiver){
-        console.log("OfferReceiver user :",offerReceiver.connectionID);
-        socket.to(offerReceiver.connectionID).emit("ReceiveOffer",data);
+        console.log("OfferReceiver user :",offerReceiver.connectionId);
+        socket.to(offerReceiver.connectionId).emit("ReceiveOffer",data);
     }
     });
 
@@ -54,8 +55,8 @@ io.on("connection",(socket)=>{
         var answerReceiver=userConnection.find((o)=>o.user_id===data.receiver)
 
         if(answerReceiver){
-            console.log("answerReceiver user :",answerReceiver.connectionID);
-            socket.to(answerReceiver.connectionID).emit("ReceiveAnswer",data);
+            console.log("answerReceiver user :",answerReceiver.connectionId);
+            socket.to(answerReceiver.connectionId).emit("ReceiveAnswer",data);
         }
     });
     
@@ -63,9 +64,19 @@ io.on("connection",(socket)=>{
         var candidateReceiver=userConnection.find((o)=>o.user_id===data.remoteUser)
 
         if(candidateReceiver){
-            console.log("candidateReceiver user :",candidateReceiver.connectionID);
-            socket.to(candidateReceiver.connectionID).emit("candidateReceiver",data);
+            console.log("candidateReceiver user :",candidateReceiver.connectionId);
+            socket.to(candidateReceiver.connectionId).emit("candidateReceiver",data);
         }
     });
     
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+        var disUser=userConnection.find((p)=>p.connectionId=socket.id);
+        if(disUser){
+            userConnection=userConnection.filter((p)=>p.connectionId=!socket.id);
+            console.log("Rest usernames are:",userConnection.map(function(user){
+               return user.user_id;
+            }))
+        }
+      });
 });
