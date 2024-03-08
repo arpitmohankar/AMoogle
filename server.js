@@ -2,8 +2,15 @@ const express = require("express");
 const path = require("path");
 const { use } = require("./Server/routes/router");
 // const bodyparser = require("body-parser");
-const PORT = process.env.PORT || 5000;
+
 const app=express();
+
+const dotenv=require("dotenv");
+const connectDB=require("./Server/database/connection");
+
+dotenv.config({path:"config.env"});
+const PORT = process.env.PORT || 8080;
+connectDB();
 
 // app.use(bodyparser.urlencoded({express:true}));
 // app.use(bodyparser.json());
@@ -34,7 +41,7 @@ io.on("connection",(socket)=>{
         userConnection.push({
             connectionId: socket.id,
             user_id: data.displayName,
-        });
+        }); 
         var userCount=userConnection.length;
         console.log("UserCount",userCount);
         
@@ -52,7 +59,7 @@ io.on("connection",(socket)=>{
 
 
     socket.on("answerSentToUser1",(data)=>{
-        var answerReceiver=userConnection.find((o)=>o.user_id===data.receiver)
+        var answerReceiver=userConnection.find((o)=>o.user_id===data.receiver);
 
         if(answerReceiver){
             console.log("answerReceiver user :",answerReceiver.connectionId);
@@ -61,7 +68,7 @@ io.on("connection",(socket)=>{
     });
     
     socket.on("candidateSentToUser",(data)=>{
-        var candidateReceiver=userConnection.find((o)=>o.user_id===data.remoteUser)
+        var candidateReceiver=userConnection.find((o)=>o.user_id===data.remoteUser);
 
         if(candidateReceiver){
             console.log("candidateReceiver user :",candidateReceiver.connectionId);
@@ -69,11 +76,11 @@ io.on("connection",(socket)=>{
         }
     });
     
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
+    socket.on("disconnect", () => {
+        console.log("user disconnected");
         var disUser=userConnection.find((p)=>p.connectionId=socket.id);
         if(disUser){
-            userConnection=userConnection.filter((p)=>p.connectionId=!socket.id);
+            userConnection=userConnection.filter((p)=>p.connectionId =! socket.id);
             console.log("Rest usernames are:",userConnection.map(function(user){
                return user.user_id;
             }))
