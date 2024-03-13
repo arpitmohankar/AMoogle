@@ -194,7 +194,7 @@ function runUser() {
   }
   function fetchNextUser(remoteUser) {
     $.post(
-      "https://amoogle.herokuapp.com/get-next-user",
+      "https://amoogle.netlify.app/get-next-user",
       { omeID: username, remoteUser: remoteUser },
       function (data) {
         console.log("Next user is: ", data);
