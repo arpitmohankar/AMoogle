@@ -26,7 +26,7 @@ var server = app.listen(PORT, () => {
 });
 
 const io = require("socket.io")(server, {
-  allowEIO3: true, //False by default
+  allowEIO3: true, 
 });
 
 var userConnection = [];
