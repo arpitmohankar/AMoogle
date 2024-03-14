@@ -1,4 +1,4 @@
-html{
+/* html{
     height: 100%;
 }
 body{
@@ -102,7 +102,7 @@ a:active{
 } */
 
 /*...............................video_chat.htm..................................................................................... */
-.video_chat_main_container{
+/* .video_chat_main_container{
     height: 100%;
     margin: 0;
     padding: 0;
@@ -137,9 +137,9 @@ video{
     max-height: 100%;
     background-color: rgb(63, 62, 62);
 
-}
+}  */
 /* ...............................chatting place....................................................................................... */
-.chat-container{
+/*.chat-container{
     flex-basis: 70%;
     display: flex;
     flex-direction: column;
@@ -201,5 +201,254 @@ video{
     align-items: center;
     font-weight: bold;
     cursor: pointer;
+
+}  */
+/*============================================================================*/
+
+/* @font-face {
+    font-family: myyyyyyy;
+    src: url(Nexa\ Bold.otf);
+} */
+ 
+@font-face {
+    font-family: myfont;
+    src: url(Oswald-VariableFont_wght.ttf);
+}
+
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background :linear-gradient(to right top, #9600ff, #8d56ff, #8d7dff, #989eff, #aebaff);
+}
+header{
+    flex-basis: 10%;
+    box-shadow: 0px 0px 5px grey;
+}
+nav{
+    height: 100%;
+    padding: 0 10px;
+    background: rgb(255, 255, 255);
+    font-family: cofo 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.NavBold{
+    font-family: "Oswald", sans-serif;
+}
+.container{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+img.logo{
+    max-height: 50px;
+}
+.online-status{
+    font-size: 20px;
+    font-weight: bold;
+    color: skyblue;
+}
+main{
+    height: 100%;
+    margin: 10px;
+    padding: 0;
+    flex-basis: 90%;
+}
+.main-container{
+    
+    padding: 20px 100px;
+
+}
+.monitored-text{
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    flex-direction: column-reverse;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+.start-chat{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.action-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+button.action-button{
+    background-color: rgb(255, 255, 255);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    padding: 8px 16px;
+    
+}
+.action-button a{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    
+    
+}
+
+
+.action-button a:hover{
+    color: #2016af;
+    
+}
+a:active{
+    color: brown;
+}
+
+
+
+/* main{
+
+    line-height: 1.5;
+    margin: 0.5em;
+    margin-top: 1em;
+    padding: 0.5em;
+    padding-bottom: 1em;
+    padding-top: 0.5em;
+    border: 1px solid #CCC;
+    background: white;
+    border-radius: 0.5em;
+    -moz-border-radius: .5em;
+    -webkit-border-radius: 0.5em;
+    box-shadow: inset 0 0 0.5em #BBB;
+    -webkit-box-shadow: inset 0 0 0.5em #BBB;
+    -moz-box-shadow: inset 0 0 .5em #BBB;
+    width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+
+} */
+
+/*...............................video_chat.htm..................................................................................... */
+.video_chat_main_container{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    flex-basis: 90%;
+
+}
+.video_chat_container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    
+}
+.video_tag_container{
+    margin-top: 10px;
+    margin-right: 5px;  
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+
+}
+.videos{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+.video-player{
+    flex-basis: 50%;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+}
+video{
+    max-width: 100%;
+    max-height: 100%;
+    background-color: rgb(63, 62, 62);
+
+}
+/* ...............................chatting place....................................................................................... */
+.chat-container{
+    flex-basis: 70%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+}
+.chat-text-container{
+    flex-basis: 80%;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+
+}
+.next-chat-container{
+    flex-basis: 20%;
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+}
+.next-chat{
+    display: flex;
+    flex-basis: 15%;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px grey;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    pointer-events: none;
+    background-color: #fff;
+    border-radius: 20px;
+
+}
+.type-message{
+    flex-basis: 70%;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 0 0px grey;
+    height: auto;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+
+}
+#msg-input{
+    width: 99%;
+    height: 91%;
+    outline: none;
+    border: 1px solid lightgray;
+    padding: 5px;
+    resize: none;
+
+}
+.msg-send-button{
+    display: flex;
+    flex-basis: 15%;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px grey;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    pointer-events: none;
+    background-color: #fff;
+    border-radius: 20px;
 
 }
