@@ -57,62 +57,24 @@ exports.updateOnOtherUserClosing = (req, res) => {
       res.status(500).send({ message: "Error update user information" });
     });
 };
-
 exports.newUserUpdate = (req, res) => {
   const userid = req.params.id;
+  console.log("Revisited userid is: ", userid);
 
- 
-  UserDB.findOne({ _id: userid })
-    .then((user) => {
-      if (user) {
-      
-        UserDB.updateOne({ _id: userid }, { $set: { active: "yes" } })
-          .then((data) => {
-            if (!data) {
-              res.status(404).send({
-                message: `Cannot update user with ${userid} Maybe user not found!`,
-              });
-            } else {
-              res.send("1 document updated");
-            }
-          })
-          .catch((err) => {
-            res.status(500).send({ message: "Error update user information" });
-          });
-        console.log("omeID exists in the database.");
-    
-      } else {
-      
-        console.log("omeID does not exist in the database.");
-
-     
-
-        const newUser = new UserDB({
-          active: "yes",
-          status: "0",
+  UserDB.updateOne({ _id: userid }, { $set: { active: "yes" } })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update user with ${userid} Maybe user not found!`,
         });
-        newUser
-          .save(newUser)
-          .then((data) => {
-          
-            const newUserID = data._id;
-
-            var newOmeID = newUserID;
-
-            res.send({ omeID: newOmeID });
-          })
-          .catch((err) => {
-            console.error("Error saving new user to the database:", err);
-           
-          });
+      } else {
+        res.send("1 document updated");
       }
     })
     .catch((err) => {
-      console.error("Error querying the database:", err);
-      
+      res.status(500).send({ message: "Error update user information" });
     });
 };
-
 exports.updateOnEngagement = (req, res) => {
   const userid = req.params.id;
   console.log("Revisited userid is: ", userid);
@@ -149,48 +111,30 @@ exports.updateOnNext = (req, res) => {
       res.status(500).send({ message: "Error update user information" });
     });
 };
-function isValidObjectId(id) {
-  
-  if (mongoose.Types.ObjectId.isValid(id)) {
-    const objectId = new mongoose.Types.ObjectId(id);
-    const idString = objectId.toString();
-
-    if (id === idString) {
-      return true;
-    }
-  }
-
-  return false;
-}
 exports.remoteUserFind = (req, res) => {
   const omeID = req.body.omeID;
-
-  if (isValidObjectId(omeID)) {
-    UserDB.aggregate([
-      {
-        $match: {
-          _id: { $ne: new mongoose.Types.ObjectId(omeID) },
-          active: "yes",
-          status: "0",
-        },
+console.log(omeID)
+  UserDB.aggregate([
+    {
+      $match: {
+        _id: { $ne: new mongoose.Types.ObjectId(omeID) },
+        active: "yes",
+        status: "0",
       },
-      { $sample: { size: 1 } },
-    ])
-      .limit(1)
-      .then((data) => {
-        res.send(data);
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message:
-            err.message || "Error occurred while retrieving user information.",
-        });
+    },
+    { $sample: { size: 1 } },
+  ])
+    .limit(1)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Error occured while retriving user information.",
       });
-  } else {
-    console.log("Invalid ID");
-  }
+    });
 };
-
 exports.getNextUser = (req, res) => {
   const omeID = req.body.omeID;
   const remoteUser = req.body.remoteUser;
@@ -213,18 +157,6 @@ exports.getNextUser = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Error occured while retriving user information.",
-      });
-    });
-};
-exports.deleteAllRecords = (req, res) => {
-  UserDB.deleteMany({})
-    .then(() => {
-      res.send("All records deleted successfully");
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while deleting all records",
       });
     });
 };

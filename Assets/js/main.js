@@ -1,17 +1,20 @@
-window.addEventListener("unload",function(event){
-    $.ajax({
-        url:"/leaving-user-update/"+username+"",
-        type:"PUT",
-        success:function(response){
-            alert(response)
-        }
-    })
-})
+var omeID = localStorage.getItem("omeID");
+if (omeID) {
 
+window.addEventListener("unload", function (event) {
+  $.ajax({
+    url: "/leaving-user-update/" + omeID + "",
+    type: "PUT",
+    success: function (response) {
+//       alert(response);
+    },
+  });
+});
 $.ajax({
-    url:"/leaving-user-update/"+username+"",
-    type:"PUT",
-    success:function(response){
-        alert(response)
-    }
-})
+  url: "/leaving-user-update/" + omeID + "",
+  type: "PUT",
+  success: function (response) {
+//     alert(response);
+  },
+});
+}
