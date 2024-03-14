@@ -19,6 +19,6 @@ route.post("/get-remote-users", controller.remoteUserFind);
 route.put("/update-on-engagement/:id", controller.updateOnEngagement);
 route.put("/update-on-next/:id", controller.updateOnNext);
 route.post("/get-next-user", controller.getNextUser);
-route.delete("/deleteAllRecords", controller.deleteAllRecords);
+// route.delete("/deleteAllRecords", controller.deleteAllRecords);
 
 module.exports = route;
