@@ -194,7 +194,7 @@ function runUser() {
   }
   function fetchNextUser(remoteUser) {
     $.post(
-      "https://amooglev2.vercel.app//get-next-user",
+      "https://amooglev2.vercel.app/get-next-user",
       { omeID: username, remoteUser: remoteUser },
       function (data) {
         console.log("Next user is: ", data);
