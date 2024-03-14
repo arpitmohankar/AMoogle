@@ -410,7 +410,6 @@ video{
     align-items: center;
     font-weight: bold;
     cursor: pointer;
-    pointer-events: none;
     background-color: #fff;
     border-radius: 20px;
 
@@ -447,7 +446,6 @@ video{
     align-items: center;
     font-weight: bold;
     cursor: pointer;
-    pointer-events: none;
     background-color: #fff;
     border-radius: 20px;
 
