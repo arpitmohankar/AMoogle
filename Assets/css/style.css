@@ -261,7 +261,7 @@ main{
     flex-basis: 90%;
 }
 .main-container{
-    
+    font-size: 1.3em;
     padding: 20px 100px;
 
 }
@@ -294,7 +294,7 @@ main{
     align-items: center;
 }
 button.action-button{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(113, 153, 237);
     font-family: Georgia, 'Times New Roman', Times, serif;
     border-radius: 5px;
     border: none;
