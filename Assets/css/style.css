@@ -265,6 +265,14 @@ main{
     padding: 20px 100px;
 
 }
+.main-container1{
+    padding: 20px;
+    background-color: white;
+    margin: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10px;
+}
 .monitored-text{
     padding: 5px;
     background-color: rgb(255, 255, 255);
